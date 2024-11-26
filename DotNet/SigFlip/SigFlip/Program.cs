@@ -118,18 +118,18 @@ namespace SigFlip
             //Update dwLength and Cert Table Entry Size (OPT Header Data Dir)
             _pe.winCert.dwLength += Convert.ToUInt32(_data.Length + _paddingLen + _tagLen);
             if (_FEHeaderMachine == 0x10B) // Intel 386 (32-bit)
-			{
-				_pe.optionalHeader32.CertificateTable.Size += Convert.ToUInt32(_data.Length + _paddingLen + _tagLen);
-				_CertificateTable = _pe.optionalHeader32.CertificateTable;
-				_AttrCertTableRVA = _pe.optionalHeader32.CertificateTable.VirtualAddress;
-			}
-			else
-			{
-				_pe.optionalHeader64.CertificateTable.Size += Convert.ToUInt32(_data.Length + _paddingLen + _tagLen);
-				_CertificateTable = _pe.optionalHeader64.CertificateTable;
-				_AttrCertTableRVA = _pe.optionalHeader64.CertificateTable.VirtualAddress;
-				CERT_TABLE_RVA_OFFSET += 16;
-			}
+            {
+                _pe.optionalHeader32.CertificateTable.Size += Convert.ToUInt32(_data.Length + _paddingLen + _tagLen);
+                _CertificateTable = _pe.optionalHeader32.CertificateTable;
+                _AttrCertTableRVA = _pe.optionalHeader32.CertificateTable.VirtualAddress;
+            }
+            else
+            {
+                _pe.optionalHeader64.CertificateTable.Size += Convert.ToUInt32(_data.Length + _paddingLen + _tagLen);
+                _CertificateTable = _pe.optionalHeader64.CertificateTable;
+                _AttrCertTableRVA = _pe.optionalHeader64.CertificateTable.VirtualAddress;
+                CERT_TABLE_RVA_OFFSET += 16;
+            }
 
 
             Console.WriteLine("[+]:Updating OPT Header fields/entries");

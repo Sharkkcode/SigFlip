@@ -31,17 +31,17 @@ namespace SigFlip
                 fileHeader = Utils.FromBinaryReader<IMAGE_FILE_HEADER>(reader);
 
                 if (fileHeader.Machine == 0x14C) // Intel 386 (32-bit)
-				{
-					optionalHeader32 = Utils.FromBinaryReader<IMAGE_OPTIONAL_HEADER32>(reader);
-					stream.Seek(optionalHeader32.CertificateTable.VirtualAddress, SeekOrigin.Begin);
-					winCert = Utils.FromBinaryReader<WIN_CERTIFICATE>(reader);
-				}
-				else
-				{
-					optionalHeader64 = Utils.FromBinaryReader<IMAGE_OPTIONAL_HEADER64>(reader);
-					stream.Seek(optionalHeader64.CertificateTable.VirtualAddress, SeekOrigin.Begin);
-					winCert = Utils.FromBinaryReader<WIN_CERTIFICATE>(reader);
-				}
+               {
+                    optionalHeader32 = Utils.FromBinaryReader<IMAGE_OPTIONAL_HEADER32>(reader);
+                    stream.Seek(optionalHeader32.CertificateTable.VirtualAddress, SeekOrigin.Begin);
+                    winCert = Utils.FromBinaryReader<WIN_CERTIFICATE>(reader);
+                }
+                else
+                {
+                    optionalHeader64 = Utils.FromBinaryReader<IMAGE_OPTIONAL_HEADER64>(reader);
+                    stream.Seek(optionalHeader64.CertificateTable.VirtualAddress, SeekOrigin.Begin);
+                    winCert = Utils.FromBinaryReader<WIN_CERTIFICATE>(reader);
+                }
 
                
 
